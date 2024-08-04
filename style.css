@@ -1,0 +1,225 @@
+body{
+    background-color: #011F3F;
+    
+}
+
+
+.simon-circle{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  
+}
+
+h1{
+    font-family: "Press Start 2P",cursive;
+    color: #FEF2BF;
+    text-align: center;
+}
+.btns{
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    width: 30vw;
+    height: 30vw;
+    border: 30px solid black;
+    border-radius: 50%;
+    overflow: hidden; 
+    box-sizing: border-box;
+    background-color: black;
+}
+.inner-circle{
+    position: absolute;
+    height: 12vw;
+    width: 12vw;
+    border: 10px solid black;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background-color: rgb(0, 0, 0);
+    z-index: 10;
+    box-sizing: border-box;
+  
+}
+.inner-circle button{
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 3px solid black;
+    border-radius: 50%;
+    background-color: #f00; /* Red color */
+    box-shadow: 0 0 10px #f00, 0 0 20px #f00, 0 0 30px #f00, 0 0 40px #f00;
+}
+
+.bi.bi-power{
+    position: relative;
+    height: 3vw;
+    width: 3vw;
+    
+}
+
+.inner-circle button:hover{
+    cursor: pointer;
+}
+
+.inner-circle p{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2vw;
+    color: #d0d0d0;
+    font-weight: 900;
+   
+}
+
+.btn{
+    position: relative;
+    margin: 5px;
+    border: 10px solid black;
+   
+}
+
+.btn:hover{
+    cursor: pointer;
+   
+}
+
+@keyframes green{
+    0%{
+        background-color: #0f0; 
+       
+    }
+    50%{
+        background-color: transparent;
+    }
+    100%{
+        background-color: #0f0; 
+       
+    }
+}
+
+@keyframes red{
+    0%{
+        background-color: #f00; 
+       
+    }
+    50%{
+        background-color: transparent;
+    }
+    100%{
+        background-color: #f00;
+       
+    }
+}
+
+@keyframes yellow{
+    0%{
+        background-color: #ffff00; 
+       
+    }
+    50%{
+        background-color: transparent;
+    }
+    100%{
+        background-color: #ffff00;
+       
+    }
+}
+
+@keyframes blue{
+    0%{
+        background-color: #0000ff; 
+       
+    }
+    50%{
+        background-color: transparent;
+    }
+    100%{
+        background-color: #0000ff;
+       
+    }
+}
+
+
+.green{
+    
+    background-color: #2ecc71;
+    border-radius: 90% 10% 10% 10%;
+   
+}
+
+.red{
+    background-color: #e74c3c;
+    border-radius: 10% 90% 10% 10%;
+   
+}
+
+.yellow{
+    background-color: #f1c40f;
+    border-radius: 10% 10% 10% 90%;
+    
+}
+
+.blue{
+    background-color: #3498db;
+    border-radius: 10% 10% 90% 10%;
+    
+}
+
+@media (max-width: 1400px) {
+    .btns {
+        width: 50vw;
+        height: 50vw;
+       
+
+    }
+
+    .inner-circle {
+        height: 15vw;
+        width: 15vw;
+    }
+
+
+    .inner-circle p {
+        font-size: 3vw;
+    }
+
+    .bi.bi-power{
+        height: 30px;
+        width: 30px;
+    }
+
+ 
+}
+
+@media (max-width: 480px) {
+    .btns {
+        width: 70vw;
+        height: 70vw;
+        border: 10px solid black;
+    }
+
+    .inner-circle {
+        height: 20vw;
+        width: 20vw;
+    }
+
+    .inner-circle p {
+        font-size: 4vw;
+    }
+
+  
+    .bi.bi-power{
+        height: 20px;
+        width: 20px;
+    }
+
+   
+  
+}
