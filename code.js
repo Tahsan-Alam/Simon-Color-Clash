@@ -12,17 +12,14 @@ $("#start").click(function() {
         });
         $("h1").html("Level " + level);
         color = createSequence();
-        buttonBlink(allButtons[color]);
-        playAudio(allButtons[color]);
+        displaySequence();
     } else {
         $("#start").css({
             "background-color": "#f00",
             "box-shadow": "0 0 10px #f00, 0 0 20px #f00, 0 0 30px #f00, 0 0 40px #f00"
         });
         $("h1").html("Press the start button to play");
-        sequenceArr = [];
-        count = 0;
-        level = 1;
+        resetGame();
     }
 });
 
@@ -38,36 +35,55 @@ for (let i = 0; i < 4; i++) {
 function game(num) {
     if (num === sequenceArr[count]) {
         playAudio(allButtons[num]);
-        if (count + 1 !== level) {
-            count++;
+        if (count + 1 === level) {
+            levelUp();
         } else {
-            color = createSequence();
-            setTimeout(function() {
-                buttonBlink(allButtons[color]);
-                playAudio(allButtons[color]);
-            }, 1000);
-            level++;
-            $("h1").html("Level " + level);
-            count = 0;
+            count++;
         }
     } else {
-        $("h1").html("Game Over");
-        playAudio("wrong");
-        $("#start").css({
-            "background-color": "#f00",
-            "box-shadow": "0 0 10px #f00, 0 0 20px #f00, 0 0 30px #f00, 0 0 40px #f00"
-        });
-        screenAnimation();
-        sequenceArr = [];
-        count = 0;
-        level = 1;
+        gameOver();
     }
+}
+
+function levelUp() {
+    color = createSequence();
+    setTimeout(function() {
+        buttonBlink(allButtons[color]);
+        playAudio(allButtons[color]);
+        count = 0;
+        $("h1").html("Level " + level);
+    }, 1000);
+    level++;
+}
+
+function gameOver() {
+    $("h1").html("Game Over");
+    playAudio("wrong");
+    $("#start").css({
+        "background-color": "#f00",
+        "box-shadow": "0 0 10px #f00, 0 0 20px #f00, 0 0 30px #f00, 0 0 40px #f00"
+    });
+    screenAnimation();
+    resetGame();
 }
 
 function createSequence() {
     const randomButton = Math.floor(Math.random() * 4);
     sequenceArr.push(randomButton);
     return randomButton;
+}
+
+function displaySequence() {
+    let index = 0;
+    function showNextButton() {
+        if (index < sequenceArr.length) {
+            buttonBlink(allButtons[sequenceArr[index]]);
+            playAudio(allButtons[sequenceArr[index]]);
+            index++;
+            setTimeout(showNextButton, 600); // Adjust timing to match your animation duration
+        }
+    }
+    showNextButton();
 }
 
 function buttonBlink(color) {
@@ -103,4 +119,10 @@ function screenAnimation() {
 function playAudio(color) {
     const audio = new Audio(`./${color}.mp3`);
     audio.play();
+}
+
+function resetGame() {
+    sequenceArr = [];
+    count = 0;
+    level = 1;
 }
